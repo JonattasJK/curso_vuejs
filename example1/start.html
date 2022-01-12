@@ -8,7 +8,11 @@
 </head>
 <body>
     <div id="app">
-        {{message}}
+        <h1 v-bind:title="tagMessage">{{message.toUpperCase()}}</h1>
+        <p>{{person.name}} {{person.age}}</p>
+        {{tag}}
+        <span v-html="tag"></span>
+        
     </div>
     <script src="vue.js"></script> <!-- arquivo -->
     <!-- <script src="https://unpkg.com/vue@next"></script> CND -->
@@ -16,7 +20,13 @@
         let myApp = new Vue({
             el: '#app',
             data: {
-                message: 'Meu pastel é mais barato'
+                message: 'Meu pastel é mais barato',
+                person: {
+                    name: "pedro",
+                    age: 52
+                },
+                tag: '<button>Click</button>',
+                tagMessage: 'esse é o titulo'
             }
         })
     </script>
