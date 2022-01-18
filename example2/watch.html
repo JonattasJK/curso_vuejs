@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.Js 4º exemplo</title>
+</head>
+<body>
+    <div id="watchers">
+        <input type="text" v-model="county">
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        let myApp = new Vue({
+            el: '#watchers',
+            data: {
+                county: 'Brasil'
+            },
+            watch: {
+                county(newValue, oldValue) {
+                    console.log(`${oldValue} virou ${newValue}`)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
