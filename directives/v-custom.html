@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.Js v-custom</title>
+</head>
+<body>
+    <div id="app">
+        <div v-upper>letras garrafais</div>
+        <div v-capitalize>frase com iniciais maiúsculas</div>
+        <div v-custom:[argument]="value">Directiva com parametros</div>
+        <input type="text" v-model="argument">
+        <input type="text" v-model="value">
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        Vue.directive('upper', {
+            inserted(el, binding, vnode) {
+                el.innerText = el.innerText.toUpperCase();
+                console.log(binding);
+                console.log(vnode);
+            }
+        })
+
+        function setDirection(el, binding){
+            el.style.margin = 0;
+            console.log(binding)
+            let direction = binding.arg.toLowerCase();
+            let value = binding.value;
+            switch(direction) {
+                case 'left':
+                case 'right':
+                case 'top':
+                case 'bottom':
+                    let newDirection = direction.charAt(0).toUpperCase() + direction.slice(1);
+                    eval(`el.style.margin${newDirection} = value + 'px'`);
+                break;
+
+                default:
+                    console.error('informe uma opção válida')
+            }
+        }
+
+        let myApp = new Vue({
+            el: '#app',
+            data: {
+                name: "Luke skywalker",
+                argument: "left",
+                value: 150
+            },
+            directives: {
+                capitalize(element) {
+                    let words = element.innerText.split(' ');
+                    words.forEach((text, index) => {
+                        words[index] = text.charAt(0).toUpperCase() + text.slice(1);
+                    });
+                    element.innerText = words.join(' ');
+                },
+                custom: {
+                    bind(el, binding){
+                        setDirection(el, binding);
+                    },  
+                    update(el, binding){
+                        setDirection(el, binding);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
