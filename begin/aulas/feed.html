@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.Js 5º exemplo</title>
+</head>
+<body>
+    <div id="feeding">
+        <h1>{{county}}</h1>
+        <ul>
+            <li v-for="state in states">{{state.nome}}</li>
+        </ul>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        let myApp = new Vue({
+            el: '#feeding',
+            data: {
+                county: 'Brasil',
+                states: []
+            },
+            created(){
+                fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+                .then(response => {
+                    response.json().then(data =>{
+                        this.states = data;
+                    })
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+        })
+    </script>
+</body>
+</html>

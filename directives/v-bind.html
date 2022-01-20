@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.Js 1º exemplo</title>
+</head>
+<body>
+    <div id="app">
+        <a :href="googleLink" > Link do google </a>
+        <!-- <a v-bind:href="googleLink" > Link do google </a> -->
+        <br>
+        <a :href="bingLink" > Link do bing </a>
+        <br>
+        <p :[arg]="argValue">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae vero accusamus dicta dolorem ipsum nihil nam delectus eaque, aperiam corporis minima, voluptas facilis distinctio accusantium magni nulla rem, dolorum et?</p>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        let myApp = new Vue({
+            el: '#app',
+            data: {
+               googleLink: "https://www.google.com/",
+               bingLink: "http://pa1.narvii.com/6415/877b00e0d5bb21a91447a045a4d292264c9b03b8_00.gif",
+               arg: "title",
+               argValue: "Lorem" 
+            }
+        })
+    </script>
+</body>
+</html>

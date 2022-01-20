@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.Js 1º exemplo</title>
+</head>
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="city in cities">{{city}}</li>
+        </ol>
+        <ul>
+            <li v-for="(city, index) in cities">{{index}} - {{city}}</li>
+        </ul>
+        <ol>
+            <li v-for="city in objCities">{{city.cidade}} - {{city.uf}}</li>
+        </ol>
+        <p v-for="(value, key) in objCities">{{key}}: {{value}}</p>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        let myApp = new Vue({
+            el: '#app',
+            data: {
+                cities: [
+                    'São Paulo', 'Rio de Janeiro', 'Florianópolis', 'Coronel Vivida'
+                ],
+                objCities: [
+                    {
+                        cidade: "Chapeco",
+                        uf: "SC"
+                    },
+                    {
+                        cidade: "Beltrão",
+                        uf: "PR"
+                    },
+                    {
+                        cidade: "Guarulhos",
+                        uf: "SP"
+                    },
+                    {
+                        cidade: "Porto Alegre",
+                        uf: "kk"
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
