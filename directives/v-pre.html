@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue.Js v-text</title>
+    <title>Vue.Js v-pre</title>
 </head>
 <body>
     <div id="app">
-        <h1 v-text="phrase"> </h1>
+        <div v-pre>{{message}}</div>
+        <div>{{message}}</div>
     </div>
 
     <script src="vue.js"></script>
@@ -16,7 +17,7 @@
         let myApp = new Vue({
             el: '#app',
             data: {
-                phrase: "Nem quem ganhar ou quem perder vai ganhar ou perder, vai todo mundo perder"
+                message: "Luke eu sou seu pai"
             }
         })
     </script>

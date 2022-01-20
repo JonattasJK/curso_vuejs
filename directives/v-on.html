@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.Js v-on</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-on:click="reverseMessage">{{message}}</h1>
+        <h1 v-on:[myevent]="reverseMessage">{{message}}</h1>
+        <input type="text" placeholder="Filtre pessoas" v-on:keyup="filterPerson">
+        <ul>
+            <li v-for="person in filteredPersons">{{person}}</li>
+        </ul>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        let myApp = new Vue({
+            el: '#app',
+            data: {
+               message: "aeeeho vuejs on",
+               myevent: "dblclick",  
+               persons: ["Pedro", "Tiago", "João", "Nobarquinho", "Nomar", "Dagalileia"],
+               filteredPersons: []
+            },
+
+            methods: {
+                reverseMessage: function(){
+                    this.message = this.message.split('').reverse().join('');
+                },
+                filterPerson(event) {
+                    this.filteredPersons = this.persons.filter(name => {
+                        return  name.toUpperCase().includes(event.target.value.toUpperCase());
+                    })
+                }
+            },
+            created() {
+                this.filteredPersons = this.persons;
+            }
+        })
+    </script>
+</body>
+</html>
